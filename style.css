@@ -1,0 +1,59 @@
+:root {
+    --main-dark: #181818;
+    --main-light: #dbdbdb;
+    --main-accent: rgba(220, 53, 69, 0.5);
+    --main-start: rgb(25, 135, 84);
+    --main-end: rgb(13, 110, 253);
+    --main-solved: rgb(220, 53, 69);
+}
+
+#screen {
+    height: 100vh;
+}
+
+#tutorial {
+    height: calc(80vh - 3.5em);
+    overflow-y: auto;
+}
+
+#tutorial>ol>li {
+    padding-right: 1em;
+    margin-bottom: 1em;
+    text-align: justify;
+}
+
+#board {
+    aspect-ratio: 1;
+    height: 80vh;
+    margin: 0 auto;
+}
+
+.pixel {
+    position: relative;
+    background-color: var(--main-light);
+    border: #ffffff solid 1px;
+}
+
+.pixel.wall {
+    background-color: var(--main-dark);
+    border: var(--main-dark) solid 1px;
+}
+.pixel.start {
+    background-color: var(--main-start);
+}
+.pixel.end {
+    background-color: var(--main-end);
+}
+.pixel.solved {
+    background-color: var(--main-solved);
+}
+
+.pixel:hover::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--main-accent);
+}
