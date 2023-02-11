@@ -6,13 +6,14 @@ Project Description
 
 ### Todo
 
-- [ ] alerts if not enough points in lab  
+- [ ] block unsolvable labyrinths  
 - [ ] html tutorial  
-- [ ] js solver  
 
 ### In Progress
 
 
 ### Done ✓
 
+- [x] js solver  
+- [x] alerts if not enough points in lab  
 
