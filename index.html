@@ -21,7 +21,8 @@
                 <div class="row">
                     <div class="input-group flex-nowrap mt-3">
                         <span class="input-group-text" id="addon-wrapping">Height</span>
-                        <input type="number" class="form-control" name="Height" id="Height" value="16" min="1" max="100">
+                        <input type="number" class="form-control" name="Height" id="Height" value="16" min="1"
+                            max="100">
                     </div>
                     <div class="input-group flex-nowrap mt-3">
                         <span class="input-group-text" id="addon-wrapping">Width</span>
@@ -33,6 +34,11 @@
                 <div class="row w-100 mt-3 gap-2">
                     <button id="tool0" class="col btn btn-dark" onclick="changeTool(0)">Brush</button>
                     <button id="tool1" class="col btn btn-outline-success" onclick="changeTool(1)">Points</button>
+                </div>
+                <h4 class="mt-3">Tools</h4>
+                <div class="row w-100 mt-3 gap-2">
+                    <button class="col btn btn-dark" onclick="setupPremadeLabyrinth(0)">1</button>
+                    <button class="col btn btn-dark" onclick="setupPremadeLabyrinth(1)">2</button>
                 </div>
             </div>
             <!-- Board -->
