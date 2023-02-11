@@ -129,6 +129,9 @@ function changeTool(tool) {
 
 function solve(coords, distance) {
     mat[coords[0]][coords[1]] = distance;
+    if (coords[0] == points[1][0] && coords[1] == points[1][1]) {
+        labSolved = true;
+    }
     if ((coords[1] != 0 && coords[1] != width - 1 && coords[0] != 0 && coords[0] != height - 1)) {
 
         if (mat[coords[0]][coords[1] - 1] == 0 || mat[coords[0]][coords[1] - 1] == 2 || mat[coords[0]][coords[1] - 1] > (mat[coords[0]][coords[1]] + 1)) {
@@ -205,12 +208,16 @@ function startSolve() {
     let twos = findPoints();
     if (twos == 2 && !labSolved) {
         solve([points[0][0], points[0][1]], 10);
-        trace([points[1][0], points[1][1]]);
+        if (labSolved) {
+            trace([points[1][0], points[1][1]]);
+        }
+        else {
+            alert("Impossible labyrinth");
+        }
         mat[points[0][0]][points[0][1]] = 2;
         mat[points[1][0]][points[1][1]] = 2;
         buildBoard();
         cleanMat();
-        labSolved = true;
     } else if (labSolved && twos == 2) {
         alert("Labyrinth's already solved");
     } else {

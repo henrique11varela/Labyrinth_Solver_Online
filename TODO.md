@@ -6,7 +6,6 @@ Project Description
 
 ### Todo
 
-- [ ] block unsolvable labyrinths  
 - [ ] html tutorial  
 
 ### In Progress
@@ -14,6 +13,7 @@ Project Description
 
 ### Done ✓
 
+- [x] block unsolvable labyrinths  
 - [x] js solver  
 - [x] alerts if not enough points in lab  
 
