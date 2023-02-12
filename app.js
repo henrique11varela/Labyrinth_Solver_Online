@@ -1,12 +1,14 @@
 //Global var
 let height = 0;
 let width = 0;
+let mat = [];
 let points = [[0, 8], [15, 8]];
-let currentTool = 0; //0-toggle 1-start 2-end
+let currentTool = 0; //0-toggle 1-point
 let labSolved = false;
+let output = document.getElementById("mat-out");
 let premadeState = -1;
 let premadeLabyrinthsSize = [[[16], [16]], [[32], [32]]];
-let premadeLabyrinths = [[
+let premadeLabyrinths = [[ //0-ground 1-wall 2-point
     [1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1],
     [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1],
@@ -59,7 +61,7 @@ let premadeLabyrinths = [[
     [1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
 ]
 
-let mat = [];
+
 
 function readBoardSize() {
     height = document.getElementById("Height").value;
@@ -67,6 +69,7 @@ function readBoardSize() {
     resetBoard();
     buildBoard();
     premadeState = -1;
+    updateOutput();
 }
 
 function resetBoard() {
@@ -118,7 +121,13 @@ function pixel(h, w) {
         }
     }
     else if (currentTool == 1) {
-        if (findPoints() < 2) {
+        if (mat[h][w] == 2) {
+            mat[h][w] = 0;
+            pixelElement.classList.remove("solved");
+            pixelElement.classList.remove("wall");
+            pixelElement.classList.remove("point");
+        }
+        else if (findPoints(mat) < 2) {
             mat[h][w] = 2;
             pixelElement.classList.remove("solved");
             pixelElement.classList.remove("wall");
@@ -127,12 +136,13 @@ function pixel(h, w) {
         else {
             alert("There's already 2 endpoints");
         }
-        if (findPoints() == 2) {
+        if (findPoints(mat) == 2) {
             changeTool(0);
         }
     }
     labSolved = false;
     premadeState = -1;
+    updateOutput();
 }
 
 function changeTool(tool) {
@@ -155,23 +165,57 @@ function changeTool(tool) {
 }
 
 function setupPremadeLabyrinth(which) {
-    mat = premadeLabyrinths[which];
+    mat = premadeLabyrinths[which].map((item) => item.slice());
     height = premadeLabyrinthsSize[which][0];
     width = premadeLabyrinthsSize[which][1];
+    document.getElementById("Height").value = height;
+    document.getElementById("Width").value = width;
     buildBoard();
     labSolved = false;
     premadeState = which;
-    debugger;
+    updateOutput();
 }
+
+function importMat() {
+    let inputElement = document.getElementById("mat-in")
+    let input = inputElement.value;
+    if (input == "" ) {
+        alert("Input's empty");
+    } else if (input.length != (height * width * 2 - 1)) {
+        alert("Input needs atleast " + (height * width) + " positions");
+    }
+    else {
+        let arr = input.split(",");
+        arr2 = [];
+        for (let h = 0; h < height; h++) {
+            arr2[h] = [];
+            for (let w = 0; w < width; w++) {
+                arr2[h][w] = arr[h * height + w];
+            }
+        }
+        if (findPoints(arr2) > 2) {
+            alert("Input has too many endpoints");
+        }
+        else {
+            mat = arr2.map((item) => item.slice());
+        }
+        buildBoard();
+    }
+    inputElement.value = "";
+}
+
+function updateOutput() {
+    output.value = mat.map((item) => item.slice());
+};
 
 //SOLVE
 
-function findPoints(value) {
+function findPoints(arr) {
     let c = 0;
     let twos = 0;
     for (let h = 0; h < height; h++) {
         for (let w = 0; w < width; w++) {
-            if (mat[h][w] == 2) {
+            if (arr[h][w] == 2) {
                 points[c][0] = h;
                 points[c][1] = w;
                 c++;
@@ -259,7 +303,7 @@ function trace(coords) {
 }
 
 function startSolve() {
-    let twos = findPoints();
+    let twos = findPoints(mat);
     if (twos == 2 && !labSolved) {
         solve([points[0][0], points[0][1]], 10);
         if (labSolved) {

@@ -6,12 +6,8 @@ Project Description
 
 ### Todo
 
-- [ ] premade labyrinth size update  
-- [ ] copy premade lab to mat instead of mem id  
 - [ ] premade buttons outline  
-- [ ] export/import mat as string  
 - [ ] js click hold paint, apply state on hover  
-- [ ] point only point tool  
 - [ ] html tutorial  
 
 ### In Progress
@@ -19,6 +15,11 @@ Project Description
 
 ### Done ✓
 
+- [x] export/import mat as string  
+- [x] point only point tool  
+- [x] copy premade lab to mat instead of mem id  
+- [x] premade labyrinth size update  
+- [x] mobile version and grid areas  
 - [x] block unsolvable labyrinths  
 - [x] js solver  
 - [x] alerts if not enough points in lab  

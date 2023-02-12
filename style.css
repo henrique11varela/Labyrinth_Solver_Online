@@ -7,36 +7,24 @@
     --main-solved: rgb(220, 53, 69);
 }
 
-.mobile {
-    display: none;
-}
-
 body {
     background-color: var(--main-background);
 }
 
+i {
+    font-size: 2rem;
+}
+
+a {
+    color: var(--main-dark);
+}
+
 #screen {
-    height: 100vh;
-}
-
-#tutorial {
-    height: calc(80vh - 3.5em);
-    overflow-y: auto;
-}
-
-#tutorial>ol>li {
-    padding-right: 1em;
-    margin-bottom: 1em;
-    text-align: justify;
-}
-
-#board {
-    aspect-ratio: 1;
-    height: 80vh;
-    margin: 0 auto;
+    min-height: 100vh;
 }
 
 .pixel {
+    aspect-ratio: 1;
     position: relative;
     background-color: var(--main-light);
     border: var(--main-background) solid 1px;
@@ -55,6 +43,85 @@ body {
     background-color: var(--main-solved);
 }
 
+
+@media (min-width: 992px) {
+
+    .sec {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
+
+    #screen {
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr minmax(200px, 3fr) minmax(auto, 80vh) minmax(200px, 3fr) 1fr;
+        grid-template-areas: 
+        ". . top . ."
+        ". settings main tutorial ."
+        ". tools main tutorial ."
+        ". premade main io ."
+        ". . main solve ."
+        ". . main . ."
+        "bottom bottom bottom bottom bottom";
+    }
+
+    #title {
+        grid-area: top;
+    }
+
+    #board-wrapper {
+        grid-area: main;
+    }
+
+    #tools {
+        grid-area: tools;
+    }
+
+    #settings {
+        grid-area: settings;
+    }
+
+    #premade {
+        grid-area: premade;
+    }
+
+    #tutorial {
+        grid-area: tutorial;
+    }
+
+    #io {
+        grid-area: io;
+    }
+
+    #solve {
+        grid-area: solve;
+        justify-content: end;
+    }
+
+    #footer {
+        grid-area: bottom;
+    }
+}
+
+
+/* 
+.mobile {
+    display: none;
+}
+
+#tutorial {
+    height: calc(80vh - 3.5em);
+    overflow-y: auto;
+}
+
+#tutorial>ol>li {
+    padding-right: 1em;
+    margin-bottom: 1em;
+    text-align: justify;
+}
+
+
 .pixel:hover::after {
     content: "";
     position: absolute;
@@ -64,3 +131,4 @@ body {
     right: 0;
     background-color: var(--main-accent);
 }
+ */
