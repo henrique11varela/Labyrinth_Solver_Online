@@ -140,7 +140,12 @@ function pixel(h, w) {
             changeTool(0);
         }
     }
-    labSolved = false;
+    if (labSolved) {
+        buildBoard();
+        document.getElementById("solveBtn").classList.replace("btn-outline-danger", "btn-danger");
+        document.getElementById("solveBtn").innerHTML = "Solve";
+        labSolved = false;
+    }
     premadeState = -1;
     updateOutput();
 }
@@ -179,7 +184,7 @@ function setupPremadeLabyrinth(which) {
 function importMat() {
     let inputElement = document.getElementById("mat-in")
     let input = inputElement.value;
-    if (input == "" ) {
+    if (input == "") {
         alert("Input's empty");
     } else if (input.length != (height * width * 2 - 1)) {
         alert("Input needs atleast " + (height * width) + " positions");
@@ -320,16 +325,24 @@ function startSolve() {
         solve([points[0][0], points[0][1]], 10);
         if (labSolved) {
             trace([points[1][0], points[1][1]]);
+            document.getElementById("solveBtn").innerHTML = "Clear";
+            document.getElementById("solveBtn").classList.replace("btn-danger", "btn-outline-danger");
         }
         else {
             alert("Impossible labyrinth");
+            document.getElementById("solveBtn").classList.replace("btn-outline-danger", "btn-danger");
+            document.getElementById("solveBtn").innerHTML = "Solve";
         }
         mat[points[0][0]][points[0][1]] = 2;
         mat[points[1][0]][points[1][1]] = 2;
         buildBoard();
         cleanMat();
     } else if (labSolved && twos == 2) {
-        alert("Labyrinth's already solved");
+        //alert("Labyrinth's already solved");
+        buildBoard();
+        document.getElementById("solveBtn").classList.replace("btn-outline-danger", "btn-danger");
+        document.getElementById("solveBtn").innerHTML = "Solve";
+        labSolved = false;
     } else {
         alert("You need 2 points to solve");
     }
