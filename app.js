@@ -198,6 +198,8 @@ function importMat() {
         }
         else {
             mat = arr2.map((item) => item.slice());
+            premadeState = -1;
+            updateOutput();
         }
         buildBoard();
     }
@@ -206,6 +208,16 @@ function importMat() {
 
 function updateOutput() {
     output.value = mat.map((item) => item.slice());
+    if (premadeState == -1) {
+        document.getElementById("pre1").classList.replace("btn-dark", "btn-outline-dark");
+        document.getElementById("pre2").classList.replace("btn-dark", "btn-outline-dark");
+    } else if (premadeState == 0) {
+        document.getElementById("pre1").classList.replace("btn-outline-dark", "btn-dark");
+        document.getElementById("pre2").classList.replace("btn-dark", "btn-outline-dark");
+    } else if (premadeState == 1) {
+        document.getElementById("pre1").classList.replace("btn-dark", "btn-outline-dark");
+        document.getElementById("pre2").classList.replace("btn-outline-dark", "btn-dark");
+    }
 };
 
 //SOLVE

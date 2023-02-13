@@ -6,15 +6,15 @@ Project Description
 
 ### Todo
 
-- [ ] premade buttons outline  
 - [ ] js click hold paint, apply state on hover  
-- [ ] html tutorial  
 
 ### In Progress
 
 
 ### Done ✓
 
+- [x] html tutorial  
+- [x] premade buttons outline  
 - [x] export/import mat as string  
 - [x] point only point tool  
 - [x] copy premade lab to mat instead of mem id  

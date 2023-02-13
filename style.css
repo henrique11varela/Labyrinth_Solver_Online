@@ -1,4 +1,4 @@
-:root {
+    :root {
     --main-dark: #181818;
     --main-light: #dbdbdb;
     --main-accent: rgba(220, 53, 69, 0.5);
@@ -61,6 +61,7 @@ a {
         ". settings main tutorial ."
         ". tools main tutorial ."
         ". premade main io ."
+        ". . main io ."
         ". . main solve ."
         ". . main . ."
         "bottom bottom bottom bottom bottom";
