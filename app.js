@@ -177,6 +177,8 @@ function setupPremadeLabyrinth(which) {
     document.getElementById("Width").value = width;
     buildBoard();
     labSolved = false;
+    document.getElementById("solveBtn").classList.replace("btn-outline-danger", "btn-danger");
+    document.getElementById("solveBtn").innerHTML = "Solve";
     premadeState = which;
     updateOutput();
 }
